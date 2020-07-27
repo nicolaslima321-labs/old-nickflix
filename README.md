@@ -9,5 +9,5 @@
 * ###### The Back-End (With PHP and Laravel)
 * ###### The Front-End (With JavaScript and Vue.js)
 * ###### The Mobile App (With JavaScript and React Native)
-* ###### And maybe... The Desktop App (With JavaScript and Electron
+* ###### And maybe... The Desktop App (With JavaScript and Electron)
 ---
