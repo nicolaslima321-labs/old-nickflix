@@ -29,4 +29,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ##### - Demonstration
 
-![Demo Screenshot](https://github.com/nicolaslima321/NickFlix/blob/master/nickflix-frontend/public/home-beta-screenshot.jpg?raw=true "Home Screenshot")
+![Demo Screenshot](https://github.com/nicolaslima321/NickFlix/blob/master/nickflix-frontend/public/home-beta-screenshot.png?raw=true "Home Screenshot")
