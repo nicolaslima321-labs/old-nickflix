@@ -1,28 +1,20 @@
 <template>
-  <nav class="flex items-center justify-between flex-wrap p-6">
-    <h1 class="colored">NETFLIX</h1>
-    <div class="block lg:hidden">
-      <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-      </button>
-    </div>
-    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-      <div class="text-sm lg:flex-grow">
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-          Docs
-        </a>
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-          Examples
-        </a>
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-          Blog
-        </a>
+  <div class="flex items-center">
+    <nav class="">
+      <div class="colored">
+        <h1 class="nickflix-logo">NICKFLIX</h1>
       </div>
-      <div>
-        <a href="#" class="colored inline-block text-sm px-4 py-2 leading-none border rounded mt-4 lg:mt-0">Download</a>
+    
+      <div class="custom-text">
+        <button class="bg-red-700 text-white font-bold py-2 px-4 rounded">
+          Sign Up
+        </button>
       </div>
-    </div>
-  </nav>
+    </nav>
+
+    <h1 class="custom-text">Unlimited movies, TV shows, and more.
+    Watch anywhere. Cancel anytime.</h1>
+  </div>
 </template>
 
 <script>
@@ -44,9 +36,12 @@ export default {
     color: rgb(229, 9, 20);
   }
 
+  .custom-text {
+    font-family: 'Martel Sans';
+  }
+
   .nickflix-logo {
     color: rgb(229, 9, 20);
-    height: 10em;
-    width: 10em;
+    font-size: 3em;
   }
 </style>
