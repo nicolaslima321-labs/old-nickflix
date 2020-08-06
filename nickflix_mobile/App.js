@@ -1,21 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+// In App.js in a new project
+
+import * as React from 'react';
+import { Button, View, Text, Image, Component } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import Routes from './src/routes/index'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={{ fontFamily: "BebasNeue-Regular" }}>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <Routes />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
