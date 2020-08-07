@@ -6,20 +6,19 @@
           Sign In
       </button>
     </header>
+    <hr>
     <div class="flex flex-col items-center space-between pt-16 justify-center">
+    </div>
   </div>
 </template>
 
 <script>
-import { QSpinnerTail } from 'quasar'
+// import { QSpinnerTail } from 'quasar'
 // import axios from 'axios'
 
 export default {
-  name: 'Home',
+  name: 'SignUp',
 
-  components: {
-    QSpinnerTail
-  },
 
   data () {
     return {
@@ -28,15 +27,13 @@ export default {
   },
 
   methods: {
-    getStarted () {
-      this.isBusy = true
-      return true
-    }
+
   }
 }
+
 </script>
 
-<style>
+<style scoped>
    .colored{
     background-color: #E50914;
   }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-picture-custom h-full">
     <header class="flex items-center justify-between">
       <h1 class="pl-10 nickflix-logo">NICKFLIX</h1>
       <button class="mr-12 colored custom-text w-36 h-8 text-inline text-white font-bold py-2 px-4 rounded">
@@ -22,6 +22,15 @@
           </div>
         </button>
       </div>
+    </div>
+    <div class="h-32">
+      <a class="hidden">You cant see, but there is</a>
+    </div>
+    <div class="h-1">
+      <a class="hidden">You cant see, but there is</a>
+    </div>
+    <div class="h-8">
+      <a class="hidden">You cant see, but there is</a>
     </div>
   </div>
 </template>
@@ -46,6 +55,12 @@ export default {
   methods: {
     getStarted () {
       this.isBusy = true
+
+      this.$router.push({
+        component: 'signup',
+        path: 'signup'
+      })
+
       return true
     }
   }
@@ -53,7 +68,7 @@ export default {
 </script>
 
 <style>
-  body {
+  .bg-picture-custom {
     background-image: url("../../public/primary-background.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
