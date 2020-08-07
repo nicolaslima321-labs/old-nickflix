@@ -1,25 +1,54 @@
 <template>
-  <div class="">
-    <nav class="flex flex-column justify-between">
-      <h1 class="ml-4 nickflix-logo">NICKFLIX</h1>
-      <button class="mt-6 mr-4 custom-text w-36 h-8 text-inline bg-red-700 text-white font-bold py-2 px-4 rounded">
-        Sign Up
+  <div>
+    <header class="flex items-center justify-between">
+      <h1 class="pl-10 nickflix-logo">NICKFLIX</h1>
+      <button class="mr-12 colored custom-text w-36 h-8 text-inline text-white font-bold py-2 px-4 rounded">
+          Sign In
       </button>
-    </nav>
-    <div class="mt-12 flex-row justify-center items-center">
-      <h1 class="ml-64 justify-center text-white biggest-text custom-text max-w-3xl"><b>Unlimited discographies, music videos,and more.</b></h1>
-      <h1 class="ml-64 justify-center text-white middle-text custom-text"><b>Watch anywhere. Cancel anytime.</b></h1>
-      <input class="ml-64 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-3/6 h-12 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" value="Jane Doe"><button class="mt-6 mr-4 custom-text w-36 h-12 text-inline bg-red-700 text-white font-bold py-2 px-4 rounded">
-        Get Started >
-      </button>
-      <h1 class="ml-64 justify-center text-white middle-text custom-text"><b>Ready to watch? Enter your email to create or restart your membership.</b></h1>
+    </header>
+    <div class="flex flex-col items-center space-between pt-16 justify-center">
+      <h1 class="text-white biggest-text custom-text max-w-2xl"><b>Unlimited discographies, music videos, and more.</b></h1>
+      <h1 class="text-white middle-text custom-text"><b>Watch anywhere. Cancel anytime.</b></h1>
+
+      <h1 class="pt-6 text-white middle-text custom-text"><b>Ready to watch? Enter your email to create or restart your membership.</b></h1>
+      <div class="pt-6 pb-6 custom-text flex items-center justify-center w-full">
+        <input class="w-4/12 mr-19 bg-gray-200 appearance-none border-2 border-gray-200 h-12 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500" id="inline-full-name" type="text" placeholder="Insira seu E-mail">
+        <button v-on:click="getStarted" class="colored custom-text w-2/12 h-12 text-inline text-white font-bold py-2 px-4">
+          <div v-if="!isBusy" class="text-l">
+            GET STARTED >
+          </div>
+          <div v-else class="flex items-center justify-center">
+            <q-spinner-tail color="primary" size="2em" />
+          </div>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { QSpinnerTail } from 'quasar'
+// import axios from 'axios'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+
+  components: {
+    QSpinnerTail
+  },
+
+  data () {
+    return {
+      isBusy: null,
+    }
+  },
+
+  methods: {
+    getStarted () {
+      this.isBusy = true
+      return true
+    }
+  }
 }
 </script>
 
@@ -32,8 +61,14 @@ export default {
     background-size: cover;
   }
 
+  .container {
+    display: 'flex';
+    align-items: 'center';
+
+  }
+
   .colored{
-    color: rgb(229, 9, 20);
+    background-color: #E50914;
   }
 
   .custom-text {
@@ -41,7 +76,7 @@ export default {
   }
 
   .biggest-text {
-    font-size: 4em;
+    font-size: 3.5em;
   }
 
   .middle-text {
@@ -49,7 +84,7 @@ export default {
   }
 
   .nickflix-logo {
-    color: rgb(229, 9, 20);
+    color: #E50914;
     font-size: 3em;
   }
 </style>
