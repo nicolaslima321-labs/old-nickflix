@@ -14,6 +14,6 @@ export default {
 
 <style>
 #app {
-  font-family: 'Bebas Neue', 'Martel Sans', 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Martel Sans', 'Bebas Neue', 'Avenir', Helvetica, Arial, sans-serif;
 }
 </style>

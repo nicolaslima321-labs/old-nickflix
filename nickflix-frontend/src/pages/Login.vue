@@ -4,11 +4,11 @@
       <h1 class="pl-10 nickflix-logo">NICKFLIX</h1>
     </header>
     <div class="flex flex-col items-center space-between pt-6 pb-16 justify-center">
-      <div class="flex flex-col custom-text bg-login-custom p-8 pl-16 pr-16 w-4/12 rounded-bordered" >
+      <div class="flex flex-col bg-login-custom p-8 pl-16 pr-16 w-4/12 rounded-bordered" >
         <label class="text-3xl font-bold text-white"><b>Entrar</b></label>
         <input v-model="email" class="text-sm mt-6 rounded h-12 pl-2" placeholder="E-mail ou Número de Telefone" />
         <input v-model="password" type="password" class="text-sm mt-6 rounded h-12 pl-2" placeholder="Senha" />
-        <button class="mt-10 h-12 colored rounded text-white font-bold">Entrar</button>
+        <button class="mt-10 h-12 colored rounded text-white font-bold" v-on:click="login">Entrar</button>
         <div class="pt-4 flex justify-between text-white">
           <input class="mr-2 leading-tight" type="checkbox"><label class="grey-text-color flex-1">Lembrar-me</label>
           <a class="grey-text-color" href="/">Need help?</a>
@@ -21,7 +21,9 @@
 
 <script>
 // import { QSpinnerTail } from 'quasar'
-// import axios from 'axios'
+import axios from 'axios'
+
+const API = 'http://api.nickflix.test'
 
 export default {
   name: 'Home',
@@ -45,6 +47,28 @@ export default {
       })
 
       return true
+    },
+
+    login () {
+
+      let user = { 
+        email : this.userEmail,
+        password: this.password
+      }
+
+      let config = {}
+
+      axios.post(`${API}/auth/login`, user, config)
+        .then((response) => this.loginSuccess(response))
+        .catch((error) => this.loginFailed(error))
+    },
+
+    loginSuccess (response) {
+      console.log(response)
+    },
+
+    loginFailed (error) {
+      console.log(error)
     }
   }
 }
@@ -83,10 +107,6 @@ export default {
     background-color: #E50914;
   }
 
-  .custom-text {
-    font-family: 'Martel Sans';
-  }
-
   .grey-text-color {
     color: #737373;
   }
@@ -102,5 +122,6 @@ export default {
   .nickflix-logo {
     color: #E50914;
     font-size: 4em;
+    font-family: 'Bebas Neue';
   }
 </style>

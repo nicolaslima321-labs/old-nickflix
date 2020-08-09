@@ -2,18 +2,18 @@
   <div class="bg-picture-custom h-full">
     <header class="flex items-center justify-between">
       <h1 class="pl-10 nickflix-logo">NICKFLIX</h1>
-      <button class="mr-12 colored custom-text w-36 h-8 text-inline text-white font-bold py-2 px-4 rounded">
+      <button class="mr-12 colored w-36 h-8 text-inline text-white font-bold py-2 px-4 rounded">
           Sign In
       </button>
     </header>
     <div class="flex flex-col items-center space-between pt-6 justify-center">
-      <h1 class="text-white biggest-text custom-text max-w-2xl"><b>Unlimited discographies, music videos, and more.</b></h1>
-      <h1 class="text-white middle-text custom-text"><b>Watch anywhere. Cancel anytime.</b></h1>
+      <h1 class="text-white biggest-text max-w-2xl"><b>Unlimited discographies, music videos, and more.</b></h1>
+      <h1 class="text-white middle-text"><b>Watch anywhere. Cancel anytime.</b></h1>
 
-      <h1 class="pt-6 text-white middle-text custom-text"><b>Ready to watch? Enter your email to create or restart your membership.</b></h1>
-      <div class="pt-6 pb-6 custom-text flex items-center justify-center w-full">
-        <input v-model="email" class="w-4/12 mr-19 bg-gray-200 appearance-none border-2 border-gray-200 h-12 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500" id="inline-full-name" type="text" placeholder="Insira seu E-mail">
-        <button v-on:click="getStarted" class="colored custom-text w-2/12 h-12 text-inline text-white font-bold py-2 px-4">
+      <h1 class="pt-6 text-white middle-text"><b>Ready to watch? Enter your email to create or restart your membership.</b></h1>
+      <div class="pt-6 pb-6 flex items-center justify-center w-full">
+        <input v-model="email" class="w-4/12 mr-19 bg-gray-200 appearance-none border-2 border-gray-200 h-12 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500" id="inline-full-name" type="text" placeholder="Insira seu E-mail" required>
+        <button v-on:click="getStarted" class="colored w-2/12 h-12 text-inline text-white font-bold py-2 px-4">
           <div v-if="!isBusy" class="text-l">
             GET STARTED >
           </div>
@@ -31,7 +31,9 @@
 
 <script>
 import { QSpinnerTail } from 'quasar'
-// import axios from 'axios'
+import axios from 'axios'
+
+const API = 'http://api.nickflix.test'
 
 export default {
   name: 'Home',
@@ -43,7 +45,7 @@ export default {
   data () {
     return {
       email: '',
-      isBusy: null,
+      isBusy: false,
     }
   },
 
@@ -51,13 +53,38 @@ export default {
     getStarted () {
       this.isBusy = true
 
+      let isAvailable = this.checkEmailIsAvailable()
+
+      if(!isAvailable) {
+        alert('Erro: E-mail inserido já está sendo utilizado!')
+        this.userEmail = ''
+        this.isBusy = false
+        return
+      }
+
+      this.isBusy = false
+
       this.$router.push({
         component: 'signup',
         path: 'signup',
-        params: () => ({ email: this.email })
+        query: { email: this.email },
       })
+    },
 
-      return true
+    checkEmailIsAvailable () {
+      let user = {
+        email: this.userEmail
+      }
+
+      axios.post(`${API}/user/available`, user)
+        .then((response) => {
+          console.log(response)
+          return true
+        })
+        .catch((error) => {
+          console.log(error)
+          return false
+        })
     }
   }
 }
@@ -82,10 +109,6 @@ export default {
     background-color: #E50914;
   }
 
-  .custom-text {
-    font-family: 'Martel Sans';
-  }
-
   .biggest-text {
     font-size: 3.5em;
   }
@@ -97,5 +120,6 @@ export default {
   .nickflix-logo {
     color: #E50914;
     font-size: 4em;
+    font-family: 'Bebas Neue';
   }
 </style>
