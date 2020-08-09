@@ -3,12 +3,12 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Home from '../components/Home.vue'
-import SignUp from '../components/SignUp.vue'
-import Login from '../components/Login.vue'
-import About from '../components/About.vue'
-import Contact from '../components/Contact.vue'
-import Nav from '../components/Nav.vue'
+import Home from '../pages/Home.vue'
+import SignUp from '../pages/SignUp.vue'
+import Login from '../pages/Login.vue'
+import About from '../pages/About.vue'
+import Contact from '../pages/Contact.vue'
+import Nav from '../pages/Nav.vue'
 
 const router = new VueRouter({
   mode: 'history',
