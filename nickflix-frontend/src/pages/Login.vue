@@ -3,7 +3,7 @@
     <header class="flex items-center justify-between">
       <h1 class="pl-10 nickflix-logo">NICKFLIX</h1>
     </header>
-    <div class="flex flex-col items-center space-between pt-6 pb-16 justify-center">
+    <div class="flex flex-col items-center space-between pt-6 pb-16 mt-2 justify-center">
       <div class="flex flex-col bg-login-custom p-8 pl-16 pr-16 w-4/12 rounded-bordered" >
         <label class="text-3xl font-bold text-white"><b>Entrar</b></label>
         <input v-model="email" class="text-sm mt-6 rounded h-12 pl-2" placeholder="E-mail ou Número de Telefone" />
@@ -20,7 +20,7 @@
           <input class="mr-2 leading-tight" type="checkbox"><label class="grey-text-color flex-1">Lembrar-me</label>
           <a class="grey-text-color" href="/">Need help?</a>
         </div>
-        <p class="pt-12 grey-text-color">Novo no NickFlix?<a class="text-white" href="/"> Inscreva-se agora.</a></p>
+        <p class="pt-16 grey-text-color">Novo no NickFlix?<a class="text-white" href="/"> Inscreva-se agora.</a></p>
       </div>
     </div>
   </div>
@@ -130,7 +130,7 @@ export default {
 
   .nickflix-logo {
     color: #E50914;
-    font-size: 4em;
+    font-size: 3em;
     font-family: 'Bebas Neue';
   }
 </style>
