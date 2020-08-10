@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post("/user", "UserController@create");
-Route::post("/login", "AuthController@login");
+Route::group("/user", function () {
+    Route::post("/signup", "UserController@create");
+});
+
+Route::group("/auth", function () {
+    Route::post("/login", "AuthController@login");
+    Route::post("/email/available", "AuthController@emailIsAvailable");
+});
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

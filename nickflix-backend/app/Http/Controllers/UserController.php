@@ -9,15 +9,6 @@ use Log;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -30,18 +21,24 @@ class UserController extends Controller
         Log::info(__CLASS__."@".__FUNCTION__.": Creating User..");
 
         $name = $request->input("name");
+        $lastName = $request->input("last_name");
         $email = $request->input("email");
         $password = $request->input("password");
+        $musicStyle = $request->input("music_genre");
+        $birthday = $request->input("birthday");
 
         try {
             if (User::where('email', $email)->exists()) {
-                return response()->json(["message" => "User cannot be created, this email is already exists!"], 401);
+                return response()->json(["message" => "User cannot be created, this email is already exists!"], 403);
             }
 
             User::create([
                 "name" => $name,
+                "last_name" => $lastName,
                 "email" => $email,
-                "password" => Hash::make($password)
+                "password" => Hash::make($password),
+                "music_genre" => $musicStyle,
+                "birthday" => $birthday,
             ]);
 
             return response()->json(["message" => "User successfully created!"], 200);
