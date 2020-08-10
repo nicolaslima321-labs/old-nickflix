@@ -51,6 +51,26 @@ class UserController extends Controller
     }
 
     /**
+     * Checks if email is already in use.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function userIsAvailable(Request $request)
+    {
+        $email = $request->input("email");
+
+        Log::info(__CLASS__."@".__FUNCTION__. ": Checking if user with email {$email} already exists..");
+        
+        if (User::where('email', $email)->exists() == false) {
+            return response()->json(["message" => "Email is available!"], 200);
+        }
+
+        Log::error(__CLASS__."@".__FUNCTION__. ": Not available, is already in use..");
+        return response()->json(["error" => "Email not available, is already in use!"], 403);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

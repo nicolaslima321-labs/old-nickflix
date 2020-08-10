@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix("user")->group(function () {
     Route::post("/signup", "UserController@create");
+    Route::post("/available", "UserController@userIsAvailable");
 });
 
 Route::prefix("auth")->group(function () {
     Route::post("/login", "AuthController@login");
-    Route::post("/email/available", "AuthController@emailIsAvailable");
 });
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {

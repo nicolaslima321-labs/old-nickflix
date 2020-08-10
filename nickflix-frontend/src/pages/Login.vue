@@ -8,7 +8,14 @@
         <label class="text-3xl font-bold text-white"><b>Entrar</b></label>
         <input v-model="email" class="text-sm mt-6 rounded h-12 pl-2" placeholder="E-mail ou Número de Telefone" />
         <input v-model="password" type="password" class="text-sm mt-6 rounded h-12 pl-2" placeholder="Senha" />
-        <button class="mt-10 h-12 colored rounded text-white font-bold" v-on:click="login">Entrar</button>
+        <button class="mt-10 h-12 colored rounded text-white font-bold" v-on:click="login">
+          <div v-if="!isBusy" class="text-l">
+            Entrar
+          </div>
+          <div v-else class="flex items-center justify-center">
+            <q-spinner-tail color="primary" size="2em" />
+          </div>
+        </button>
         <div class="pt-4 flex justify-between text-white">
           <input class="mr-2 leading-tight" type="checkbox"><label class="grey-text-color flex-1">Lembrar-me</label>
           <a class="grey-text-color" href="/">Need help?</a>
@@ -20,39 +27,41 @@
 </template>
 
 <script>
-// import { QSpinnerTail } from 'quasar'
+import { QSpinnerTail } from 'quasar'
+
 import axios from 'axios'
 
-const API = 'http://api.nickflix.test'
+const API = 'http://api.nickflix:8000/api'
 
 export default {
   name: 'Home',
 
+  components: {
+    QSpinnerTail
+  },
 
   data () {
     return {
       email: '',
-      isBusy: null,
+      password: '',
+      isBusy: false,
     }
   },
 
   methods: {
-    getStarted () {
-      this.isBusy = true
+    gotoDashboard () {
+      this.isBusy = false
 
       this.$router.push({
-        component: 'signup',
-        path: 'signup',
-        params: () => ({ email: this.email })
+        component: 'dashboard',
+        path: 'dashboard'
       })
-
-      return true
     },
 
     login () {
 
       let user = { 
-        email : this.userEmail,
+        email : this.email,
         password: this.password
       }
 

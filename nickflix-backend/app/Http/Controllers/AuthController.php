@@ -26,21 +26,4 @@ class AuthController extends Controller
 
         return response()->json(["message" => "User is authorized!"], 200);
     }
-
-    /**
-     * Checks if email is already in use.
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function emailIsAvailable(Request $request)
-    {
-        $email = $request->input("email");
-        
-        if (User::where('email', $email)->exists() == false) {
-            return response()->json(["message" => "Email is available!"], 200);
-        }
-
-        return response()->json(["error" => "Email not available, is already in use!"], 403);
-    }
 }

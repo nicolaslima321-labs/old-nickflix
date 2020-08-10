@@ -34,7 +34,7 @@ import { QSpinnerTail } from 'quasar'
 
 import axios from 'axios'
 
-const API = 'http://api.nickflix.test'
+const API = 'http://api.nickflix:8000/api'
 
 export default {
   name: 'Home',
@@ -47,6 +47,7 @@ export default {
     return {
       email: '',
       isBusy: false,
+      userIsAvailable: true,
     }
   },
 
@@ -55,12 +56,12 @@ export default {
   },
 
   methods: {
-    getStarted () {
+    async getStarted () {
       this.isBusy = true
 
-      let isAvailable = this.checkEmailIsAvailable()
+      await this.checkEmailIsAvailable()
 
-      if(!isAvailable) {
+      if(!this.userIsAvailable) {
         alert('Erro: E-mail inserido já está sendo utilizado!')
         this.userEmail = ''
         this.isBusy = false
@@ -76,19 +77,19 @@ export default {
       })
     },
 
-    checkEmailIsAvailable () {
-      let user = {
-        email: this.userEmail
-      }
+    async checkEmailIsAvailable () {
+      let user = { email: this.email }
 
-      axios.post(`${API}/user/available`, user)
+      var self = this
+      
+      await axios.post(`${API}/user/available`, user)
         .then((response) => {
           console.log(response)
-          return true
+          self.userIsAvailable = true
         })
         .catch((error) => {
           console.log(error)
-          return false
+          self.userIsAvailable = false
         })
     }
   }
