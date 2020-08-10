@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckUserExistence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,7 @@ Route::prefix("user")->group(function () {
 });
 
 Route::prefix("auth")->group(function () {
-    Route::post("/login", "AuthController@login");
+    Route::post("/login", "AuthController@login")->middleware(CheckUserExistence::class);
 });
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
