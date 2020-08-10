@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 import Home from '../pages/Home.vue'
 import SignUp from '../pages/SignUp.vue'
 import Login from '../pages/Login.vue'
+import Dashboard from '../pages/Dashboard.vue'
 
 const router = new VueRouter({
   mode: 'history',
@@ -14,6 +15,7 @@ const router = new VueRouter({
     { path: '/', component: Home },
     { path: '/signup', component: SignUp },
     { path: '/login', component: Login },
+    { path: '/dashboard', component: Dashboard },
   ]
 });
 
