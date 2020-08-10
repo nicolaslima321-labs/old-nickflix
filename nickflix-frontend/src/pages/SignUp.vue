@@ -10,7 +10,7 @@
         <div class="w-4/12">
           <p class="font-thin ">PASSO <b>{{ step }}</b> DE <b>3</b>.</p>
           <h1 class="font-bold items-start text-2xl">Bem-vindo(a) de volta!</h1>
-          <h1 class="font-bold items-start text-2xl">É fácil assinar a Netflix.</h1>
+          <h1 class="font-bold items-start text-2xl">É fácil assinar o NickFlix.</h1>
           <p class="font-thin">Informe sua senha para começar a assistir.</p>
         </div>
         <div class="w-4/12 flex flex-col pt-4 pb-4">
