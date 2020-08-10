@@ -3,17 +3,22 @@
     <header class="flex items-center justify-between">
       <h1 class="pl-10 pt-2 nickflix-logo"><a href="/dashboard">NICKFLIX</a></h1>
       <div class="flex-1 justify-between font-semibold">
-        <a class="pl-8 text-white hover:text-gray-400" href="/">Home</a>
-        <a class="pl-3 text-white hover:text-gray-400" href="/">Discographies</a>
-        <a class="pl-3 text-white hover:text-gray-400" href="/">Most Recent</a>
-        <a class="pl-3 text-white hover:text-gray-400" href="/">My List</a>
+        <a class="pl-8 text-sm text-white hover:text-gray-400" href="/">Home</a>
+        <a class="pl-3 text-sm text-white hover:text-gray-400" href="/">Discographies</a>
+        <a class="pl-3 text-sm text-white hover:text-gray-400" href="/">Most Recent</a>
+        <a class="pl-3 text-sm text-white hover:text-gray-400" href="/">My List</a>
       </div>
       <div class="flex pr-10 items-end">
         <Magnify class="pl-6 text-white"/>
         <WalletGiftcard class="pl-6 text-white"/>
         <Bell class="pl-6 text-white"/>
       </div>
+      <img v-on:click="profilePicFocused = !profilePicFocused" src="../assets/generic-avatar.png" class="mt-4 mr-6 h-16 w-16" />
+      <div v-show="profilePicFocused" class="z-50 bg-gray-400 h-64 w-16">
+        teste teste
+      </div>
     </header>
+    teste
   </div>
 </template>
 
@@ -38,12 +43,14 @@ export default {
 
   data () {
     return {
-      
+      profilePicFocused: false,
     }
   },
 
   methods: {
-
+    debug () {
+      console.log("hovered")
+    }
   }
 }
 </script>
