@@ -7,7 +7,7 @@
         <div class="w-3/12 text-justify pt-2 pb-8">
           <h1 class="text-gray-100 font-semibold">Linkin Park é uma banda de rock dos Estados Unidos formada em Agoura Hills, Califórnia. A formação atual da banda inclui o vocalista e multi-instrumentista Mike Shinoda, o guitarrista Brad Delson, o baixista Dave Farrell, o DJ Joe Hahn e o baterista Rob Bourdon, todos membros fundadores.</h1>
         </div>
-        <button class="rounded bg-white hover:bg-opacity-75 font-semibold p-2 pl-4 pr-4"><Play class="float-left pr-2"/>Watch</button>
+        <button v-on:click="goToMainDiscography" class="rounded bg-white hover:bg-opacity-75 font-semibold p-2 pl-4 pr-4"><Play class="float-left pr-2"/>Watch</button>
         <button class="ml-4 rounded text-white bg-gray-600 custom-opacity font-semibold p-2 pl-4 pr-4"><InformationOutline class="float-left pr-2" />More Info</button>
       </div>
     </div>
@@ -55,6 +55,14 @@ export default {
   methods: {
     debug () {
       console.log("hovered")
+    },
+
+    goToMainDiscography () {
+      this.$router.push({
+        component: 'discography',
+        path: 'discography',
+        query: { id: 1 },
+      })
     }
   }
 }
