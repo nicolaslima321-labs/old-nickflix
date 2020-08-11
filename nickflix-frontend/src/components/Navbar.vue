@@ -12,8 +12,8 @@
       <a href="/"><WalletGiftcard class="mr-12 text-white"/></a>
       <a href="/"><Bell class="mr-12 text-white"/></a>
     </div>
-    <img v-on:click="profilePicFocused = !profilePicFocused" src="../assets/generic-avatar.png" class="rounded-lg mt-4 mr-6 h-12 w-12" />
-    <ProfileDropMenu class="float-right" v-show="profilePicFocused" :options="options" />
+    <img v-on:mousedown="profilePicFocused = true" v-on:mouseleave="profilePicFocused = false" src="../assets/generic-avatar.png" class="rounded-lg mt-4 mr-6 h-12 w-12" />
+    <ProfileDropMenu class="absolute top-0 right-0 mt-20" v-show="profilePicFocused" :options="options" />
   </header>
 </template>
 
@@ -23,6 +23,8 @@ import ProfileDropMenu from '../components/ProfileDropMenu'
 import Magnify from 'vue-material-design-icons/Magnify.vue'
 import WalletGiftcard from 'vue-material-design-icons/WalletGiftcard.vue'
 import Bell from 'vue-material-design-icons/Bell.vue'
+
+const BASE_URL = 'http://localhost:8081'
 
 export default {
   name: 'Navbar',
@@ -37,6 +39,7 @@ export default {
   data () {
     return {
       profilePicFocused: false,
+      options: [ { id: 0, href: BASE_URL, name: "Conta", separator: true }, { id: 1, href: BASE_URL, name: "Configurações", separator: false } ],
     }
   },
 

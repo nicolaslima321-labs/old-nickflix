@@ -32,8 +32,6 @@ import Play from 'vue-material-design-icons/Play.vue'
 
 //  import { mdiWalletGiftcard } from '@mdi/js'
 // import axios from 'axios'
-
-const BASE_URL = 'http://localhost:8081'
 // const API = 'http://api.nickflix:8000/api'
 
 export default {
@@ -50,7 +48,6 @@ export default {
   data () {
     return {
       profilePicFocused: false,
-      options: [ { id: 0, href: BASE_URL, name: "Conta", separator: true }, { id: 1, href: BASE_URL, name: "Configurações", separator: false } ],
       slide: 1
     }
   },
