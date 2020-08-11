@@ -13,29 +13,33 @@
         <WalletGiftcard class="pl-6 text-white"/>
         <Bell class="pl-6 text-white"/>
       </div>
-      <img v-on:click="profilePicFocused = !profilePicFocused" src="../assets/generic-avatar.png" class="mt-4 mr-6 h-16 w-16" />
-      <div v-show="profilePicFocused" class="z-50 bg-gray-400 h-64 w-16">
-        teste teste
-      </div>
+      <img v-on:click="profilePicFocused = !profilePicFocused" src="../assets/generic-avatar.png" class="rounded-lg mt-4 mr-6 h-16 w-16" />
     </header>
-    teste
+    <ProfileDropMenu class="float-right" v-show="profilePicFocused" :options="options" />
+    <div>
+      <h1 class="text-xl">ALGUM TECXTO MTO FODA</h1>
+    </div>
   </div>
 </template>
 
 <script>
 // import { QIcon, Quasar } from 'quasar'
- import Magnify from 'vue-material-design-icons/Magnify.vue'
- import WalletGiftcard from 'vue-material-design-icons/WalletGiftcard.vue'
- import Bell from 'vue-material-design-icons/Bell.vue'
+import ProfileDropMenu from '../components/ProfileDropMenu'
+
+import Magnify from 'vue-material-design-icons/Magnify.vue'
+import WalletGiftcard from 'vue-material-design-icons/WalletGiftcard.vue'
+import Bell from 'vue-material-design-icons/Bell.vue'
 //  import { mdiWalletGiftcard } from '@mdi/js'
 // import axios from 'axios'
 
+const BASE_URL = 'http://localhost:8081'
 // const API = 'http://api.nickflix:8000/api'
 
 export default {
   name: 'Dashboard',
 
   components: {
+    ProfileDropMenu,
     Magnify,
     WalletGiftcard,
     Bell
@@ -44,6 +48,7 @@ export default {
   data () {
     return {
       profilePicFocused: false,
+      options: [ { id: 0, href: BASE_URL, name: "Conta" }, { id: 1, href: BASE_URL, name: "Configurações" } ]
     }
   },
 
