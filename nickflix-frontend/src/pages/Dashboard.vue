@@ -1,22 +1,7 @@
 <template>
   <div>
     <div class="custom-bg">
-      <header class="flex items-center justify-between">
-        <h1 class="pl-10 nickflix-logo"><a href="/dashboard">NICKFLIX</a></h1>
-        <div class="flex-1 justify-between">
-          <a class="pl-12 text-sm text-white hover:text-gray-400" href="/">Home</a>
-          <a class="pl-3 text-sm text-white hover:text-gray-400" href="/">Discographies</a>
-          <a class="pl-3 text-sm text-white hover:text-gray-400" href="/">Most Recent</a>
-          <a class="pl-3 text-sm text-white hover:text-gray-400" href="/">My List</a>
-        </div>
-        <div class="flex pr-10 pt-8 items-end">
-          <a href="/"><Magnify class="mr-12 text-white"/></a>
-          <a href="/"><WalletGiftcard class="mr-12 text-white"/></a>
-          <a href="/"><Bell class="mr-12 text-white"/></a>
-        </div>
-        <img v-on:click="profilePicFocused = !profilePicFocused" src="../assets/generic-avatar.png" class="rounded-lg mt-4 mr-6 h-12 w-12" />
-      </header>
-      <ProfileDropMenu class="float-right" v-show="profilePicFocused" :options="options" />
+      <Navbar />
       <div class="pl-12 pb-32">
         <img class="linkinpark-logo-size" src="../assets/linkin-park-logo.png">
         <div class="w-3/12 text-justify pt-2 pb-8">
@@ -31,24 +16,17 @@
         class="pt-16 pb-16"
         slide-image-inside
       >
-        <vueper-slide v-for="i in 3" :key="i" :title="i.toString()" :image="'https://avatars0.githubusercontent.com/u/23743072?s=460&u=cc978541fc3489dbf1cb45a96227672800f24485&v=4'" :style="'background-color: #000000'"/>
+        <vueper-slide v-for="i in 3" :key="i" :content="'Nickflixson'" :image="'https://avatars0.githubusercontent.com/u/23743072?s=460&u=cc978541fc3489dbf1cb45a96227672800f24485&v=4'" :style="'background-color: #000000'"/>
       </vueper-slides>
     </div>
   </div>
 </template>
 
 <script>
-// import { QCarousel, QCarouselSlide } from 'quasar'
+import Navbar from '../components/Navbar'
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
-// import DiscographyPlayer from '../components/DiscographyPlayer'
-// const LinkinPark_URL = "https://www.youtube.com/embed/videoseries?list=PLIPEvF0Ga5Jz3J0Ttlf0uQAXeh9SER4W1"
 
-import ProfileDropMenu from '../components/ProfileDropMenu'
-
-import Magnify from 'vue-material-design-icons/Magnify.vue'
-import WalletGiftcard from 'vue-material-design-icons/WalletGiftcard.vue'
-import Bell from 'vue-material-design-icons/Bell.vue'
 import InformationOutline from 'vue-material-design-icons/InformationOutline.vue'
 import Play from 'vue-material-design-icons/Play.vue'
 
@@ -62,17 +40,11 @@ export default {
   name: 'Dashboard',
 
   components: {
-    Bell,
-    // DiscographyPlayer,
     InformationOutline,
     Play,
-    ProfileDropMenu,
-    Magnify,
-    // QCarousel,
-    // QCarouselSlide,
-    VueperSlides, 
+    Navbar,
+    VueperSlides,
     VueperSlide,
-    WalletGiftcard,
   },
 
   data () {
@@ -94,7 +66,6 @@ export default {
 <style lang="scss" scoped>
 
 .custom-bg {
-  background-color: rgba(0,0,0,0.5);
   background-image: url("../assets/Chester-Bennington_(DarkBG).png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -108,12 +79,6 @@ export default {
 
 .custom-opacity:hover {
   background-color: rgba(109, 109, 110, 0.6);
-}
-
-.nickflix-logo {
-  color: #E50914;
-  font-size: 2em;
-  font-family: 'Bebas Neue';
 }
 
 .linkinpark-logo-size {
