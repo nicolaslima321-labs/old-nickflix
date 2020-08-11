@@ -15,7 +15,8 @@
     "vue-material": "^1.0.0-beta-14",
     "vue-material-design-icons": "^4.8.0",
     "vue-router": "^3.3.4",
-    "vue-the-mask": "^0.11.1"
+    "vue-the-mask": "^0.11.1",
+    "vueperslides": "^2.10.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",

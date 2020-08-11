@@ -26,14 +26,21 @@
         <button class="ml-4 rounded text-white bg-gray-600 custom-opacity font-semibold p-2 pl-4 pr-4"><InformationOutline class="float-left pr-2" />More Info</button>
       </div>
     </div>
-    <div class="bg-black pb-64">
-      testesddasdsaasasdads
+    <div class="bg-black">
+      <vueper-slides
+        class="pt-16 pb-16"
+        slide-image-inside
+      >
+        <vueper-slide v-for="i in 3" :key="i" :title="i.toString()" :image="'https://avatars0.githubusercontent.com/u/23743072?s=460&u=cc978541fc3489dbf1cb45a96227672800f24485&v=4'" :style="'background-color: #000000'"/>
+      </vueper-slides>
     </div>
   </div>
 </template>
 
 <script>
-// import { QIcon, Quasar } from 'quasar'
+// import { QCarousel, QCarouselSlide } from 'quasar'
+import { VueperSlides, VueperSlide } from 'vueperslides'
+import 'vueperslides/dist/vueperslides.css'
 // import DiscographyPlayer from '../components/DiscographyPlayer'
 // const LinkinPark_URL = "https://www.youtube.com/embed/videoseries?list=PLIPEvF0Ga5Jz3J0Ttlf0uQAXeh9SER4W1"
 
@@ -61,13 +68,18 @@ export default {
     Play,
     ProfileDropMenu,
     Magnify,
+    // QCarousel,
+    // QCarouselSlide,
+    VueperSlides, 
+    VueperSlide,
     WalletGiftcard,
   },
 
   data () {
     return {
       profilePicFocused: false,
-      options: [ { id: 0, href: BASE_URL, name: "Conta", separator: true }, { id: 1, href: BASE_URL, name: "Configurações", separator: false } ]
+      options: [ { id: 0, href: BASE_URL, name: "Conta", separator: true }, { id: 1, href: BASE_URL, name: "Configurações", separator: false } ],
+      slide: 1
     }
   },
 
