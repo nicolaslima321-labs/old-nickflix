@@ -11,5 +11,5 @@ class Discography extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'artist', 'description', 'picture', 'url_origin', 'extras' ];
+    protected $fillable = [ 'artist', 'genre', 'resume', 'description', 'picture', 'url_origin', 'extras' ];
 }

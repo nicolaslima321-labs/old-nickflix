@@ -16,6 +16,8 @@ class CreateDiscographiesTable extends Migration
         Schema::create('discographies', function (Blueprint $table) {
             $table->id();
             $table->string('artist')->unique();
+            $table->string('genre');
+            $table->string('resume');
             $table->string('description');
             $table->string('picture');
             $table->string('url_origin');
