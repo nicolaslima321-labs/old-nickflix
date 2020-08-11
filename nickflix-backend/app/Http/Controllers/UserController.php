@@ -29,7 +29,7 @@ class UserController extends Controller
 
         try {
             if (User::where('email', $email)->exists()) {
-                return response()->json(["message" => "User cannot be created, this email is already exists!"], 403);
+                return response()->json(["message" => "User cannot be created, this email already exists!"], 403);
             }
 
             User::create([

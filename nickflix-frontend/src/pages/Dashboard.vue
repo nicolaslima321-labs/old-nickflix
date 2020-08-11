@@ -2,41 +2,49 @@
   <div>
     <div class="custom-bg">
       <header class="flex items-center justify-between">
-        <h1 class="pl-10 pt-2 nickflix-logo"><a href="/dashboard">NICKFLIX</a></h1>
-        <div class="flex-1 justify-between font-semibold">
-          <a class="pl-8 text-sm text-white hover:text-gray-400" href="/">Home</a>
+        <h1 class="pl-10 nickflix-logo"><a href="/dashboard">NICKFLIX</a></h1>
+        <div class="flex-1 justify-between">
+          <a class="pl-12 text-sm text-white hover:text-gray-400" href="/">Home</a>
           <a class="pl-3 text-sm text-white hover:text-gray-400" href="/">Discographies</a>
           <a class="pl-3 text-sm text-white hover:text-gray-400" href="/">Most Recent</a>
           <a class="pl-3 text-sm text-white hover:text-gray-400" href="/">My List</a>
         </div>
-        <div class="flex pr-10 items-end">
+        <div class="flex pr-10 pt-8 items-end">
           <a href="/"><Magnify class="mr-12 text-white"/></a>
           <a href="/"><WalletGiftcard class="mr-12 text-white"/></a>
           <a href="/"><Bell class="mr-12 text-white"/></a>
         </div>
-        <img v-on:click="profilePicFocused = !profilePicFocused" src="../assets/generic-avatar.png" class="rounded-lg mt-4 mr-6 h-16 w-16" />
+        <img v-on:click="profilePicFocused = !profilePicFocused" src="../assets/generic-avatar.png" class="rounded-lg mt-4 mr-6 h-12 w-12" />
       </header>
       <ProfileDropMenu class="float-right" v-show="profilePicFocused" :options="options" />
-      <div class="pl-8 ml-2 h-64 mb-64">
+      <div class="pl-12 pb-32">
         <img class="linkinpark-logo-size" src="../assets/linkin-park-logo.png">
-      </div>
-      <div class="h-64 mt-64">
-        <h1 class="text-xl">ALGUM TECXTO MTO FODA</h1>
+        <div class="w-3/12 text-justify pt-2 pb-8">
+          <h1 class="text-gray-100 font-semibold">Linkin Park é uma banda de rock dos Estados Unidos formada em Agoura Hills, Califórnia. A formação atual da banda inclui o vocalista e multi-instrumentista Mike Shinoda, o guitarrista Brad Delson, o baixista Dave Farrell, o DJ Joe Hahn e o baterista Rob Bourdon, todos membros fundadores.</h1>
+        </div>
+        <button class="rounded bg-white hover:bg-opacity-75 font-semibold p-2 pl-4 pr-4"><Play class="float-left pr-2"/>Watch</button>
+        <button class="ml-4 rounded text-white bg-gray-600 custom-opacity font-semibold p-2 pl-4 pr-4"><InformationOutline class="float-left pr-2" />More Info</button>
       </div>
     </div>
-    <div>
-      teste
+    <div class="bg-black pb-64">
+      testesddasdsaasasdads
     </div>
   </div>
 </template>
 
 <script>
 // import { QIcon, Quasar } from 'quasar'
+// import DiscographyPlayer from '../components/DiscographyPlayer'
+// const LinkinPark_URL = "https://www.youtube.com/embed/videoseries?list=PLIPEvF0Ga5Jz3J0Ttlf0uQAXeh9SER4W1"
+
 import ProfileDropMenu from '../components/ProfileDropMenu'
 
 import Magnify from 'vue-material-design-icons/Magnify.vue'
 import WalletGiftcard from 'vue-material-design-icons/WalletGiftcard.vue'
 import Bell from 'vue-material-design-icons/Bell.vue'
+import InformationOutline from 'vue-material-design-icons/InformationOutline.vue'
+import Play from 'vue-material-design-icons/Play.vue'
+
 //  import { mdiWalletGiftcard } from '@mdi/js'
 // import axios from 'axios'
 
@@ -47,16 +55,19 @@ export default {
   name: 'Dashboard',
 
   components: {
+    Bell,
+    // DiscographyPlayer,
+    InformationOutline,
+    Play,
     ProfileDropMenu,
     Magnify,
     WalletGiftcard,
-    Bell
   },
 
   data () {
     return {
       profilePicFocused: false,
-      options: [ { id: 0, href: BASE_URL, name: "Conta" }, { id: 1, href: BASE_URL, name: "Configurações" } ]
+      options: [ { id: 0, href: BASE_URL, name: "Conta", separator: true }, { id: 1, href: BASE_URL, name: "Configurações", separator: false } ]
     }
   },
 
@@ -68,15 +79,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .custom-bg {
   background-color: rgba(0,0,0,0.5);
-  background-image: url("../assets/linkinpark-main-background.png");
+  background-image: url("../assets/Chester-Bennington_(DarkBG).png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.custom-opacity {
+  background-color: rgba(109, 109, 110, 0.7);
+}
+
+.custom-opacity:hover {
+  background-color: rgba(109, 109, 110, 0.6);
 }
 
 .nickflix-logo {
@@ -86,7 +105,8 @@ export default {
 }
 
 .linkinpark-logo-size {
-  max-height: 131;
-  max-width: 93;
+  filter: invert(99%) sepia(1%) saturate(5%) hue-rotate(25deg) brightness(103%) contrast(102%);
+  height: 25%;
+  width: 25%;
 }
 </style>
