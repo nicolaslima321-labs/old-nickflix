@@ -12,19 +12,27 @@
       </div>
     </div>
     <div class="bg-black">
-      <vueper-slides
-        class="pt-16 pb-16"
-        slide-image-inside
-      >
-        <vueper-slide v-for="i in 3" :key="i" :content="'Nickflixson'" :image="'https://avatars0.githubusercontent.com/u/23743072?s=460&u=cc978541fc3489dbf1cb45a96227672800f24485&v=4'" :style="'background-color: #000000'"/>
-      </vueper-slides>
+      <h1 class="p-2 text-white font-semibold text-2xl">Principais:</h1>
+
+      <slider animation="fade">
+        <slider-item
+          v-for="(discography, index) in discographies"
+          :key="index"
+          :style="discography"
+          @click="goToDiscography(i)"
+        >
+          <p style="line-height: 280px; font-size: 2.5rem; text-align: center;">{{ discography.artist }}</p>
+        </slider-item>
+      </slider>
     </div>
   </div>
 </template>
 
 <script>
 import Navbar from '../components/Navbar'
-import { VueperSlides, VueperSlide } from 'vueperslides'
+// import { VueperSlides, VueperSlide } from 'vueperslides'
+import { Slider, SliderItem } from 'vue-easy-slider'
+
 import 'vueperslides/dist/vueperslides.css'
 
 import InformationOutline from 'vue-material-design-icons/InformationOutline.vue'
@@ -41,14 +49,17 @@ export default {
     InformationOutline,
     Play,
     Navbar,
-    VueperSlides,
-    VueperSlide,
+    // VueperSlides,
+    // VueperSlide,
+    Slider,
+    SliderItem,
   },
 
   data () {
     return {
       profilePicFocused: false,
-      slide: 1
+      slide: 1,
+      discographies: null,
     }
   },
 
@@ -70,6 +81,15 @@ export default {
       })
     },
 
+    goToDiscography (discography) {
+      console.log(discography)
+      // this.$router.push({
+      //   component: 'discography',
+      //   path: 'discography',
+      //   query: { id: 1 },
+      // })
+    },
+
     loadDiscographies () {
       axios.get(`${API}/discography/`)
         .then((response) => this.loadDiscographiesSuccess(response))
@@ -79,7 +99,18 @@ export default {
       loadDiscographiesSuccess (response) {
         console.log("Success! =]")
         console.log(response)
-        this.originUrl = response.data.url_origin
+        let discographiesCollection = response.data.result
+
+        this.discographies = discographiesCollection.map(function(discography) {
+          return {
+            id: discography.id,
+            artist: discography.artist,
+            backgroundImage: `url(${discography.picture_url})`, 
+            backgroundSize: 'cover', 
+            width: '100%', 
+            height: '100%'
+          }
+        })
       },
 
       loadDiscographiesFailed (error) {

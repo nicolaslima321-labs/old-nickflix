@@ -13,7 +13,7 @@ import axios from 'axios'
 import DiscographyPlayer from '../components/DiscographyPlayer'
 import Navbar from '../components/Navbar'
 
-const API = 'http://api.nickflix:8000/api'
+const API = 'http://api.nickflix:8001/api'
 
 export default {
   name: 'Discography',
