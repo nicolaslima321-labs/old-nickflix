@@ -19,6 +19,11 @@ Route::prefix("user")->group(function () {
     Route::post("/available", "UserController@userIsAvailable");
 });
 
+Route::prefix("discography")->group(function () {
+    Route::post("/create", "DiscographyController@create");
+    Route::get("/{id}", "DiscographyController@get");
+});
+
 Route::middleware(["checkUserExistence"])->group(function () {
     Route::post("/login", "AuthController@login");
 });

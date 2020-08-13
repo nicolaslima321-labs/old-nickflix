@@ -22,15 +22,19 @@ class DiscographyController extends Controller
 
         $artist = $request->input('artist');
         $genre = $request->input('genre');
+        $resume = $request->input('resume');
         $description = $request->input('description');
         $urlOrigin = $request->input('url_origin');
-        $extras = $request->input('extras');
+        $extras = json_encode($request->input('extras'));
 
+        $artistNameFormated = str_replace(" ", "_", $artist);
+        $fileExtension = $request->file('picture')->getClientOriginalExtension();
         $filePath = $request->file('picture')->storeAs(
-            'discographies/pictures', $artist
+            'public/discographies/pictures', "{$artistNameFormated}.{$fileExtension}"
         );
 
         $picture = $filePath;
+        $pictureUrl = env("API_DISCOGRAPHY_PICTURE_URL") . "{$artistNameFormated}.{$fileExtension}";
 
         try {
             if (Discography::where('artist', $artist)->exists()) {
@@ -40,13 +44,15 @@ class DiscographyController extends Controller
             Discography::create([
                 'artist' => $artist,
                 'genre' => $genre,
+                'resume' => $resume,
                 'description' => $description,
                 'picture' => $picture,
+                'picture_url' => $pictureUrl,
                 'url_origin' => $urlOrigin,
                 'extras' => $extras,
             ]);
 
-            return response()->json(["message" => "User successfully created!"], 200);
+            return response()->json(["message" => "Discography successfully created!"], 200);
 
         } catch (\Exception $e) {
             Log::error(__CLASS__."@".__FUNCTION__.": {$e->getMessage()}\n {$e->getTraceAsString()}");
@@ -63,7 +69,7 @@ class DiscographyController extends Controller
      */
     public function get($id)
     {
-        $discography = Discography::where('artist', $artist)->first();
+        $discography = Discography::where('id', $id)->first();
 
         if (is_null($discography)) {
             return response(["message" => "There's no discography of this artist"], 404);
@@ -73,8 +79,9 @@ class DiscographyController extends Controller
             "id" => $discography->id,
             "artist" => $discography->artist,
             "genre" => $discography->genre,
+            "resume" => $discography->resume,
             "description" => $discography->description,
-            "picture" => $discography->picture,
+            "picture_url" => $discography->picture_url,
             "url_origin" => $discography->url_origin,
             "extras" => $discography->extras,
         ], 200);

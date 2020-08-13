@@ -17,9 +17,10 @@ class CreateDiscographiesTable extends Migration
             $table->id();
             $table->string('artist')->unique();
             $table->string('genre');
-            $table->string('resume');
-            $table->string('description');
+            $table->longText('resume');
+            $table->longText('description');
             $table->string('picture');
+            $table->string('picture_url');
             $table->string('url_origin');
             $table->json('extras');
             $table->timestamps();
