@@ -11,16 +11,6 @@ export default {
   props: {
     srcDiscography: String,
   },
-
-  data () {
-    return {
-      
-    }
-  },
-
-  methods: {
-
-  }
 }
 </script>
 

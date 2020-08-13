@@ -31,8 +31,8 @@ import InformationOutline from 'vue-material-design-icons/InformationOutline.vue
 import Play from 'vue-material-design-icons/Play.vue'
 
 //  import { mdiWalletGiftcard } from '@mdi/js'
-// import axios from 'axios'
-// const API = 'http://api.nickflix:8000/api'
+import axios from 'axios'
+const API = 'http://api.nickflix:8001/api'
 
 export default {
   name: 'Dashboard',
@@ -52,6 +52,11 @@ export default {
     }
   },
 
+  mounted () {
+    this.loadDiscographies()
+
+  },
+
   methods: {
     debug () {
       console.log("hovered")
@@ -63,7 +68,24 @@ export default {
         path: 'discography',
         query: { id: 1 },
       })
-    }
+    },
+
+    loadDiscographies () {
+      axios.get(`${API}/discography/`)
+        .then((response) => this.loadDiscographiesSuccess(response))
+        .catch((error) => this.loadDiscographiesFailed(error))
+      },
+
+      loadDiscographiesSuccess (response) {
+        console.log("Success! =]")
+        console.log(response)
+        this.originUrl = response.data.url_origin
+      },
+
+      loadDiscographiesFailed (error) {
+        console.log("Failed")
+        console.log(error)
+      },
   }
 }
 </script>

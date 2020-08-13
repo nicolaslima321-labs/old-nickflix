@@ -8,15 +8,15 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 import DiscographyPlayer from '../components/DiscographyPlayer'
 import Navbar from '../components/Navbar'
-// import axios from 'axios'
 
-// const API = 'http://api.nickflix:8000/api'
-const LinkinPark_URL = "https://www.youtube.com/embed/videoseries?list=PLIPEvF0Ga5Jz3J0Ttlf0uQAXeh9SER4W1"
+const API = 'http://api.nickflix:8000/api'
 
 export default {
-  name: 'ProfileSelector',
+  name: 'Discography',
 
   components: {
     DiscographyPlayer,
@@ -25,12 +25,32 @@ export default {
 
   data () {
     return {
-      originUrl: LinkinPark_URL
+      discographyId: this.$route.query.id,
+      originUrl: ''
     }
+  },
+  
+  mounted () {
+    this.loadDiscography()
   },
 
   methods: {
+    loadDiscography () {
+      axios.get(`${API}/discography/${this.discographyId}/`)
+        .then((response) => this.loadDiscographySuccess(response))
+        .catch((error) => this.loadDiscographyFailed(error))
+    },
 
+    loadDiscographySuccess (response) {
+      console.log("Success! =]")
+      console.log(response)
+      this.originUrl = response.data.url_origin
+    },
+
+    loadDiscographyFailed (error) {
+      console.log("Failed")
+      console.log(error)
+    },
   }
 }
 </script>

@@ -21,7 +21,9 @@ Route::prefix("user")->group(function () {
 
 Route::prefix("discography")->group(function () {
     Route::post("/create", "DiscographyController@create");
+    Route::get("/", "DiscographyController@getAll");
     Route::get("/{id}", "DiscographyController@get");
+    Route::get("/genre/{genre}", "DiscographyController@getByGenre");
 });
 
 Route::middleware(["checkUserExistence"])->group(function () {

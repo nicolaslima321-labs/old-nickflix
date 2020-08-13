@@ -69,6 +69,8 @@ class DiscographyController extends Controller
      */
     public function get($id)
     {
+        Log::info(__CLASS__."@".__FUNCTION__.": Getting informations of Discography #{$id} ..");
+
         $discography = Discography::where('id', $id)->first();
 
         if (is_null($discography)) {
@@ -84,6 +86,46 @@ class DiscographyController extends Controller
             "picture_url" => $discography->picture_url,
             "url_origin" => $discography->url_origin,
             "extras" => $discography->extras,
+        ], 200);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getByGenre($genre)
+    {
+        Log::info(__CLASS__."@".__FUNCTION__.": Getting informations of {$genre} discographies..");
+
+        $discographies = Discography::where("genre", $genre)->get()->toArray();
+
+        if (is_null($discographies)) {
+            return response(["message" => "There's no discography of this artist"], 404);
+        }
+
+        return response()->json([
+            "result" => $discographies
+        ], 200);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getAll()
+    {
+        $discographies = Discography::all()->toArray();
+
+        if (is_null($discographies)) {
+            return response(["message" => "There's no discography"], 404);
+        }
+
+        return response()->json([
+            "result" => $discographies
         ], 200);
     }
 
