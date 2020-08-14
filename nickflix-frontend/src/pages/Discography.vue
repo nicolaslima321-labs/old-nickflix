@@ -37,7 +37,7 @@ export default {
 
   methods: {
     loadDiscography () {
-      axios.get(`${API}/discography/${this.discographyId}/`)
+      axios.get(`${API}/discography/id/${this.discographyId}/`)
         .then((response) => this.loadDiscographySuccess(response))
         .catch((error) => this.loadDiscographyFailed(error))
     },

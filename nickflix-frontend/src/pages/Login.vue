@@ -31,7 +31,7 @@ import { QSpinnerTail } from 'quasar'
 
 import axios from 'axios'
 
-const API = 'http://api.nickflix:8000/api'
+const API = 'http://api.nickflix:8001/api'
 
 export default {
   name: 'Home',

@@ -22,6 +22,7 @@ class CreateDiscographiesTable extends Migration
             $table->string('picture');
             $table->string('picture_url');
             $table->string('url_origin');
+            $table->integer('trending')->default(0);
             $table->json('extras');
             $table->timestamps();
         });

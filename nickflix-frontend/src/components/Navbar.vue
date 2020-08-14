@@ -1,5 +1,5 @@
 <template>
-  <header class="flex items-center justify-between">
+  <header style="background-color: rgba(0,0,0, .1)" class="flex items-center justify-between">
     <h1 class="pl-10 nickflix-logo"><a href="/dashboard">NICKFLIX</a></h1>
     <div class="flex-1 justify-between">
       <a class="pl-12 text-sm text-white hover:text-gray-400" href="/">Home</a>

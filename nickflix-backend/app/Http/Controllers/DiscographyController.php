@@ -25,6 +25,7 @@ class DiscographyController extends Controller
         $resume = $request->input('resume');
         $description = $request->input('description');
         $urlOrigin = $request->input('url_origin');
+        $trending = is_null($request->input('trending')) ? 0 : $request->input('trending');
         $extras = json_encode($request->input('extras'));
 
         $artistNameFormated = str_replace(" ", "_", $artist);
@@ -49,6 +50,7 @@ class DiscographyController extends Controller
                 'picture' => $picture,
                 'picture_url' => $pictureUrl,
                 'url_origin' => $urlOrigin,
+                'trending' => (int)$trending,
                 'extras' => $extras,
             ]);
 
@@ -95,14 +97,37 @@ class DiscographyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getByGenre($genre)
+    public function getByGenre()
     {
-        Log::info(__CLASS__."@".__FUNCTION__.": Getting informations of {$genre} discographies..");
+        Log::info(__CLASS__."@".__FUNCTION__.": Returning discographies by genre..");
 
-        $discographies = Discography::where("genre", $genre)->get()->toArray();
+        $rockDiscographies = Discography::where("genre", 'Rock')->get()->toArray();
+        $nationalDiscographies = Discography::where("genre", 'National')->get()->toArray();
+        $internationalDiscographies = Discography::where("genre", 'International')->get()->toArray();
+
+        if (is_null($rockDiscographies) && is_null($nationalDiscographies) && is_null($internationalDiscographies)) {
+            return response(["message" => "There's no discography of this artist"], 404);
+        }
+
+        return response()->json([
+            "rock" => $rockDiscographies,
+            "national" => $nationalDiscographies,
+            "international" => $internationalDiscographies,
+        ], 200);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getAll()
+    {
+        $discographies = Discography::all()->toArray();
 
         if (is_null($discographies)) {
-            return response(["message" => "There's no discography of this artist"], 404);
+            return response(["message" => "There's no discography"], 404);
         }
 
         return response()->json([
@@ -116,9 +141,9 @@ class DiscographyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getAll()
+    public function getTrending()
     {
-        $discographies = Discography::all()->toArray();
+        $discographies = Discography::where('trending', 1)->get()->toArray();
 
         if (is_null($discographies)) {
             return response(["message" => "There's no discography"], 404);
