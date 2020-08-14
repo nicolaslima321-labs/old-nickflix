@@ -1,5 +1,5 @@
 <template>
-  <div class="artist-background">
+  <div class="artist-background" v-if="discography" :style="discography.background">
     <Navbar />
     <div class="flex items-center justify-center">
       <DiscographyPlayer class="pt-12 pb-12" :srcDiscography="originUrl" />
@@ -26,6 +26,7 @@ export default {
   data () {
     return {
       discographyId: this.$route.query.id,
+      discography: null,
       originUrl: ''
     }
   },
@@ -44,6 +45,9 @@ export default {
     loadDiscographySuccess (response) {
       console.log("Success! =]")
       console.log(response)
+      this.discography = response.data
+      console.log(this.discography)
+      this.discography.background = { backgroundImage: `url(${this.discography.picture_url})` }
       this.originUrl = response.data.url_origin
     },
 
@@ -57,7 +61,6 @@ export default {
 
 <style scoped>
 .artist-background {
-  background-image: url("../assets/Chester-Bennington_(DarkBG).png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -12,18 +12,24 @@
       </div>
     </div>
     <div class="bg-black">
-      <h1 class="p-2 text-white font-semibold text-2xl">Principais:</h1>
+      <div class="p-16">
+        <h1 class="p-2 text-white font-semibold text-2xl">Principais Discografias</h1>
 
-      <slider animation="fade">
-        <slider-item
-          v-for="(discography, index) in discographies"
-          :key="index"
-          :style="discography"
-          @click="goToDiscography(i)"
-        >
-          <p style="line-height: 280px; font-size: 2.5rem; text-align: center;">{{ discography.artist }}</p>
-        </slider-item>
-      </slider>
+        <slider animation="fade">
+          <slider-item
+            v-for="(discography, index) in discographies"
+            :key="index"
+            :style="discography"
+            @click="goToDiscography(discography)"
+          >
+            <div class="flex self-center justify-center items-center h-64 cursor-pointer">
+              <a class="text-white text-2xl hover:bg-opacity-50 font-semibold bg-black bg-opacity-75 rounded-lg p-3">
+                {{ discography.artist }}
+              </a>
+            </div>
+          </slider-item>
+        </slider>
+      </div>
     </div>
   </div>
 </template>
@@ -82,12 +88,11 @@ export default {
     },
 
     goToDiscography (discography) {
-      console.log(discography)
-      // this.$router.push({
-      //   component: 'discography',
-      //   path: 'discography',
-      //   query: { id: 1 },
-      // })
+      this.$router.push({
+        component: 'discography',
+        path: 'discography',
+        query: { id: discography.id },
+      })
     },
 
     loadDiscographies () {
@@ -106,7 +111,9 @@ export default {
             id: discography.id,
             artist: discography.artist,
             backgroundImage: `url(${discography.picture_url})`, 
-            backgroundSize: 'cover', 
+            backgroundSize: 'cover',
+            backgroundPosition: '55% 35%',
+            padding: "",
             width: '100%', 
             height: '100%'
           }
@@ -122,7 +129,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .custom-bg {
   background-image: url("../assets/Chester-Bennington_(DarkBG).png");
   -webkit-background-size: cover;
