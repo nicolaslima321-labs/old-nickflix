@@ -7,6 +7,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Hash;
 use Log;
+use JWTAuth;
 
 class AuthController extends Controller
 {
@@ -24,6 +25,11 @@ class AuthController extends Controller
             return response()->json(["error" => "Password is incorect!"], 401);
         }
 
-        return response()->json(["message" => "User is authorized!"], 200);
+        $jwtToken = JWTAuth::fromUser(Auth::user());
+
+        return response()->json([
+            "message" => "User is authorized!",
+            "authorization" => "Bearer {$jwtToken}",
+        ], 200);
     }
 }

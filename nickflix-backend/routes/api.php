@@ -19,16 +19,20 @@ Route::prefix("user")->group(function () {
     Route::post("/available", "UserController@userIsAvailable");
 });
 
-Route::prefix("discography")->group(function () {
-    Route::post("/create", "DiscographyController@create");
-    Route::get("/", "DiscographyController@getAll");
-    Route::get("/id/{id}", "DiscographyController@get");
-    Route::get("/genre", "DiscographyController@getByGenre");
-    Route::get("/trending", "DiscographyController@getTrending");
+Route::middleware(["jwt.auth"])->group(function () {
+    Route::prefix("discography")->group(function () {
+        Route::post("/create", "DiscographyController@create");
+        Route::get("/", "DiscographyController@getAll");
+        Route::get("/id/{id}", "DiscographyController@get");
+        Route::get("/genre", "DiscographyController@getByGenre");
+        Route::get("/trending", "DiscographyController@getTrending");
+    });
 });
 
 Route::middleware(["checkUserExistence"])->group(function () {
-    Route::post("/login", "AuthController@login");
+    Route::prefix("auth")->group(function () {
+        Route::post("/login", "AuthController@login");
+    });
 });
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
