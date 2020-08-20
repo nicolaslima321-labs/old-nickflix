@@ -1,13 +1,32 @@
-# NickFlix
+# nickflix-frontend
 
-###### NickFlix is wanted to be an project to enterntain myself (Something needed in this quarentine), improve and practice, my development knowlodges. I was a considerable time without developing any mobile applications, then i decided to create this project.
+## Project setup
+```
+npm install
+```
 
-###### It will have 3 segments (Maybe 4, but meanwhile its still 3), we gonna build an application from scratch, mirroring on the Official Netflix as our reference. And NickFlix will try be a little different.
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-###### The 3 Principal Segments will be:
+### Compiles and minifies for production
+```
+npm run build
+```
 
-* ###### The Back-End (With PHP and Laravel)
-* ###### The Front-End (With JavaScript and Vue.js)
-* ###### The Mobile App (With JavaScript and React Native)
-* ###### And maybe... The Desktop App (With JavaScript and Electron)
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
 ---
+
+### Introduction
+
+##### - Demonstration
+
+![Demo Screenshot](https://github.com/nicolaslima321/NickFlix/blob/master/nickflix-frontend/public/home-beta-screenshot.png?raw=true "Home Screenshot")
