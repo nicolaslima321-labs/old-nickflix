@@ -75,7 +75,7 @@ export default {
 
     loginSuccess (response) {
       let token = response.data.token
-      setAuthorization(token)
+      this.setAuthorization(token)
       console.log(response)
     },
 
