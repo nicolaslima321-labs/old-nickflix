@@ -17,7 +17,7 @@
           </div>
         </button>
         <div class="pt-4 flex justify-between text-white">
-          <input class="mr-2 leading-tight" type="checkbox"><label class="grey-text-color flex-1">Lembrar-me</label>
+          <input v-model="rememberMe" class="mr-2 leading-tight" type="checkbox"><label class="grey-text-color flex-1">Lembrar-me</label>
           <a class="grey-text-color" href="/">Need help?</a>
         </div>
         <p class="pt-16 grey-text-color">Novo no NickFlix?<a class="text-white" href="/"> Inscreva-se agora.</a></p>
@@ -45,6 +45,7 @@ export default {
       email: '',
       password: '',
       isBusy: false,
+      rememberMe: '',
     }
   },
 
@@ -73,11 +74,18 @@ export default {
     },
 
     loginSuccess (response) {
+      let token = response.data.token
+      setAuthorization(token)
       console.log(response)
     },
 
     loginFailed (error) {
       console.log(error)
+    },
+
+    setAuthorization (token) {
+      localStorage.setItem("Authorization", `Bearer ${token}`)  
+      localStorage.setItem("Remember", this.rememberMe)  
     }
   }
 }
