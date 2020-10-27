@@ -1,9 +1,33 @@
-# nickflix-frontend
+# NickFlix
+---
+## Overview
 
-## Project setup
+This project pretends to be an replica of Netflix, but instead of streaming videos, movies, it will stream musics clips, discographies. Filtered by genre, artist, and some other things..
+
+The repository contains the Front-End developed in VueJS, **(SPA)** and the Mobile Application developed in React Native.
+
+##### Current project status
+
+Because of time, the project its unfinished yet, theres some of these follow things left that i'm still working on.
+
+- JWT authentication
+- Reponsive design for mobile apps
+- Improve middlewares
+- Page section to account and content management
+
+---
+
+## Setup for SPA
+
+To install the project, after clone the repo, you must run
+
 ```
 npm install
 ```
+
+To run the application, for work properly, the back-end must be running, you can do this following its docs at the [Back-End](https://github.com/nicolaslima321/NickFlix-API) project.
+
+After you got the [Back-End](https://github.com/nicolaslima321/NickFlix-API) running, you can follow with these steps:
 
 ### Compiles and hot-reloads for development
 ```
@@ -20,13 +44,8 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
 ---
 
-### Introduction
+### Demonstration
 
-##### - Demonstration
-
-![Demo Screenshot](https://github.com/nicolaslima321/NickFlix/blob/master/nickflix-frontend/public/home-beta-screenshot.png?raw=true "Home Screenshot")
+![Demo Screenshot](https://github.com/nicolaslima321/NickFlix/blob/master/NickFlix/public/home-screenshot.png?raw=true "Home Screenshot")
