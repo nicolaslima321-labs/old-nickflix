@@ -1,5 +1,5 @@
 # NickFlix
----
+
 ## Overview
 
 This project pretends to be an replica of Netflix, but instead of streaming videos, movies, it will stream musics clips, discographies. Filtered by genre, artist, and some other things..
