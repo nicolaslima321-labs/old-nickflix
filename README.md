@@ -48,4 +48,18 @@ npm run lint
 
 ### Demonstration
 
-![Demo Screenshot](https://github.com/nicolaslima321/NickFlix/blob/master/NickFlix/public/home-screenshot.png?raw=true "Home Screenshot")
+- Home Page
+
+![Demo Screenshot](https://github.com/nicolaslima321/NickFlix/blob/master/public/home-screenshot.png?raw=true "Home Screenshot")
+
+- Login Page
+
+![Demo Screenshot](https://github.com/nicolaslima321/NickFlix/blob/master/public/login-screenshot.png?raw=true "Home Screenshot")
+
+- Dashboard Page (1)
+
+![Demo Screenshot](https://github.com/nicolaslima321/NickFlix/blob/master/public/dashboard-1-screenshot.png?raw=true "Home Screenshot")
+
+- Dashboard Page (2)
+
+![Demo Screenshot](https://github.com/nicolaslima321/NickFlix/blob/master/public/dashboard-2-screenshot.png?raw=true "Home Screenshot")
