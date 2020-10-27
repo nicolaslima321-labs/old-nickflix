@@ -10,10 +10,12 @@ The repository contains the Front-End developed in VueJS, **(SPA)** and the Mobi
 
 Because of time, the project its unfinished yet, theres some of these follow things left that i'm still working on.
 
-- JWT authentication
+- Deal with JWT authentication
 - Reponsive design for mobile apps
-- Improve middlewares
 - Page section to account and content management
+- Improve UI and UX
+
+**Mobile documentation still in progress**
 
 ---
 
